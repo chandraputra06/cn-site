@@ -19,3 +19,47 @@ body{
               var(--bg);
   color: var(--secondary);
 }
+
+/* --- Animation utilities (CN) --- */
+@layer utilities {
+  .cn-fade-up {
+    animation: cnFadeUp 700ms ease-out both;
+  }
+  .cn-fade-up-2 {
+    animation: cnFadeUp 900ms ease-out both;
+  }
+  .cn-fade-up-3 {
+    animation: cnFadeUp 1100ms ease-out both;
+  }
+
+  .cn-float {
+    animation: cnFloat 8s ease-in-out infinite;
+  }
+  .cn-float-2 {
+    animation: cnFloat2 10s ease-in-out infinite;
+  }
+  .cn-shimmer {
+    background-size: 200% 100%;
+    animation: cnShimmer 2.4s linear infinite;
+  }
+}
+
+@keyframes cnFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cnFloat {
+  0%, 100% { transform: translate3d(0,0,0) scale(1); }
+  50% { transform: translate3d(18px,-14px,0) scale(1.05); }
+}
+
+@keyframes cnFloat2 {
+  0%, 100% { transform: translate3d(0,0,0) scale(1); }
+  50% { transform: translate3d(-16px,12px,0) scale(1.06); }
+}
+
+@keyframes cnShimmer {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
