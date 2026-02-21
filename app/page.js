@@ -1,12 +1,15 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import ServicesOverview from "@/components/ServicesOverview";
 
 export default function Home() {
   return (
-    <main className="min-h-screen text-white">
+    <>
       <Navbar />
-      <Hero />
-      <div className="h-24" />
-    </main>
+      <main className="bg-[#080A0F] text-white">
+        <Hero />
+        <ServicesOverview />
+      </main>
+    </>
   );
 }
