@@ -11,6 +11,8 @@ import {
 } from "react-icons/fa";
 import { site } from "@/data/site";
 
+const SERVICES_BG = "#090D14";
+
 const services = [
   {
     title: "Landing Page",
@@ -103,6 +105,9 @@ function ServiceCard({ service, index }) {
         boxShadow: "0 12px 40px rgba(0,0,0,0.24)",
       }}
     >
+      {/* top sheen */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/[0.05] to-transparent" />
+
       {/* animated border glow */}
       <motion.div
         className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
@@ -178,8 +183,8 @@ export default function ServicesOverview() {
   return (
     <section
       id="services"
-      className="relative overflow-hidden py-14 md:py-20"
-      style={{ backgroundColor: "#0A101A" }}
+      className="relative overflow-hidden py-16 md:py-22"
+      style={{ backgroundColor: SERVICES_BG }}
     >
       <style>{`
         @keyframes gridDrift {
@@ -188,46 +193,57 @@ export default function ServicesOverview() {
         }
       `}</style>
 
-      {/* seamless bridge from hero */}
-      <div className="pointer-events-none absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#080A0F] via-[#090D14] to-[#0A101A]" />
+      {/* bridge from hero */}
+      <div className="pointer-events-none absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#080A0F] via-[#090C13] to-[#090D14]" />
 
       {/* background layers */}
       <div className="pointer-events-none absolute inset-0">
-        {/* base */}
-        <div className="absolute inset-0 bg-[#0A101A]" />
+        <div className="absolute inset-0 bg-[#090D14]" />
 
-        {/* large glows */}
         <motion.div
-          className="absolute -top-20 -left-20 h-80 w-80 rounded-full blur-3xl"
-          style={{ background: "rgba(49,96,158,0.18)" }}
-          animate={{ x: [0, 18, 0], y: [0, -10, 0], scale: [1, 1.06, 1] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-20 right-0 h-72 w-72 rounded-full blur-3xl"
-          style={{ background: "rgba(27,58,98,0.20)" }}
-          animate={{ x: [0, -14, 0], y: [0, 10, 0], scale: [1, 1.05, 1] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-24 -left-16 h-80 w-80 rounded-full blur-3xl"
+          style={{ background: "rgba(39,86,145,0.14)" }}
+          animate={{ x: [0, 16, 0], y: [0, -10, 0], scale: [1, 1.05, 1] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* subtle radial layer */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(49,96,158,0.16),transparent_42%),radial-gradient(circle_at_82%_30%,rgba(27,58,98,0.20),transparent_48%),radial-gradient(circle_at_50%_100%,rgba(33,74,122,0.10),transparent_55%)]" />
+        <motion.div
+          className="absolute top-10 right-0 h-72 w-72 rounded-full blur-3xl"
+          style={{ background: "rgba(27,58,98,0.14)" }}
+          animate={{ x: [0, -14, 0], y: [0, 10, 0], scale: [1, 1.04, 1] }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+        />
 
-        {/* animated grid */}
-        <div className="absolute inset-0 overflow-hidden opacity-[0.07]">
+        {/* bottom glow for blending to pricing */}
+        <div
+          className="absolute -bottom-20 left-1/2 h-64 w-[620px] -translate-x-1/2 rounded-full blur-3xl"
+          style={{ background: "rgba(74,58,140,0.10)" }}
+        />
+
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle at 18% 18%, rgba(49,96,158,0.12), transparent 42%),
+              radial-gradient(circle at 82% 30%, rgba(27,58,98,0.14), transparent 48%),
+              radial-gradient(circle at 50% 100%, rgba(74,58,140,0.10), transparent 55%)
+            `,
+          }}
+        />
+
+        <div className="absolute inset-0 overflow-hidden opacity-[0.055]">
           <div
             className="absolute -inset-10"
             style={{
-              backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)`,
+              backgroundImage: `linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)`,
               backgroundSize: "48px 48px",
-              animation: "gridDrift 12s linear infinite alternate",
+              animation: "gridDrift 14s linear infinite alternate",
             }}
           />
         </div>
 
-        {/* vignette */}
-        <div className="absolute inset-0 [box-shadow:inset_0_0_140px_rgba(0,0,0,0.24)]" />
+        <div className="absolute inset-0 [box-shadow:inset_0_0_140px_rgba(0,0,0,0.28)]" />
       </div>
 
       <div className="relative mx-auto w-full max-w-6xl px-4 md:px-8">
@@ -285,7 +301,6 @@ export default function ServicesOverview() {
           transition={{ duration: 0.5, delay: 0.05 }}
           className="mt-8 flex flex-col items-center justify-center gap-3 md:mt-10 md:flex-row"
         >
-          {/* View Pricing */}
           <motion.a
             href="#pricing"
             className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/20 bg-white/[0.06] px-6 py-3 text-sm font-medium text-white backdrop-blur"
@@ -293,7 +308,6 @@ export default function ServicesOverview() {
             whileTap={{ scale: 0.985, y: 0 }}
             transition={{ type: "spring", stiffness: 280, damping: 20 }}
           >
-            {/* soft glow */}
             <motion.span
               className="pointer-events-none absolute inset-0 opacity-0"
               initial={false}
@@ -305,7 +319,6 @@ export default function ServicesOverview() {
               }}
             />
 
-            {/* shine sweep */}
             <motion.span
               className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 rotate-12 bg-white/10 blur-md"
               whileHover={{ x: ["0%", "380%"] }}
@@ -323,7 +336,6 @@ export default function ServicesOverview() {
             </motion.span>
           </motion.a>
 
-          {/* WhatsApp */}
           <motion.a
             href={site.contact.whatsapp}
             target="_blank"
@@ -333,7 +345,6 @@ export default function ServicesOverview() {
             whileTap={{ scale: 0.985, y: 0 }}
             transition={{ type: "spring", stiffness: 280, damping: 20 }}
           >
-            {/* animated bg highlight */}
             <motion.span
               className="pointer-events-none absolute inset-0"
               initial={false}
@@ -344,7 +355,6 @@ export default function ServicesOverview() {
               transition={{ duration: 0.2 }}
             />
 
-            {/* shine sweep */}
             <motion.span
               className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 rotate-12 bg-white/20 blur-md"
               whileHover={{ x: ["0%", "420%"] }}
