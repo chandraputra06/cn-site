@@ -6,7 +6,7 @@ import { site } from "@/data/site";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 export default function Hero() {
-  const bgSrc = "/images/CN-LOGO.png"; // Replace with your actual image path
+  const bgSrc = "/images/CN-BG.png"; // Replace with your actual image path
 
   // Mouse parallax (subtle)
   const mouseX = useMotionValue(0);
