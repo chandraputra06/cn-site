@@ -1,19 +1,17 @@
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
-export const metadata = {
-  title: "CN Createsites",
-  description: "Navigating Online Visibility & Authority",
-  icons: {
-    icon: "/images/CN-LOGO.png",
-    shortcut: "/images/CN-LOGO.png",
-    apple: "/images/CN-LOGO.png",
-  },
-};
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className={`${poppins.className} antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }

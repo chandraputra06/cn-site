@@ -5,12 +5,14 @@ import PricingSection from "@/components/PricingSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
+import FooterSection from "@/components/FooterSection";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="bg-[#080A0F] text-white">
+
+      <main className="min-h-screen overflow-x-hidden bg-[#080A0F] text-white">
         <Hero />
         <ServicesOverview />
         <PricingSection />
@@ -18,6 +20,8 @@ export default function Home() {
         <FAQSection />
         <ContactSection />
       </main>
+
+      <FooterSection />
     </>
   );
 }

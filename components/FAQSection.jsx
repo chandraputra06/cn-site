@@ -5,9 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
 import { site } from "@/data/site";
 
-const FAQ_BG = "#0B111B"; // darker blue-black, closer to services/pricing blend
-const TEAL = "#42C7B5";
-const TEAL_DIM = "rgba(66,199,181,0.12)";
+const FAQ_BG = "#0A101A"; // samakan keluarga warna dengan section lain
+const ACCENT = "#2B5D96"; // accent utama biru
+const ACCENT_SOFT = "rgba(43,93,150,0.14)";
+const ACCENT_BORDER = "rgba(43,93,150,0.28)";
 
 const faqItems = [
   {
@@ -57,80 +58,67 @@ function FAQRow({ item, index, isOpen, onToggle }) {
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.45, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        duration: 0.45,
+        delay: index * 0.05,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       className="relative"
     >
       <div
         className="absolute left-0 right-0 top-0 h-px"
         style={{
           background: isOpen
-            ? `linear-gradient(to right, ${TEAL}55, ${TEAL}16, transparent)`
+            ? `linear-gradient(to right, ${ACCENT_BORDER}, rgba(255,255,255,0.05), transparent)`
             : "linear-gradient(to right, rgba(255,255,255,0.08), transparent)",
-          transition: "background 0.4s",
+          transition: "background 0.35s ease",
         }}
       />
 
       <button
         type="button"
         onClick={onToggle}
-        className="group relative w-full cursor-pointer text-left"
-        style={{
-          padding: "1.35rem 0",
-          display: "grid",
-          gridTemplateColumns: "3rem 1fr 2rem",
-          gap: "0 1rem",
-          alignItems: "start",
-        }}
+        className="group relative grid w-full cursor-pointer grid-cols-[2.5rem_1fr_2rem] items-start gap-x-4 py-5 text-left"
       >
+        {/* Number */}
         <span
+          className="select-none text-sm font-semibold tracking-[0.14em]"
           style={{
-            fontSize: "1.05rem",
-            fontWeight: 700,
-            lineHeight: 1,
-            color: isOpen ? TEAL : "rgba(255,255,255,0.22)",
-            transition: "color 0.3s",
-            userSelect: "none",
-            letterSpacing: "0.04em",
-            marginTop: "0.18rem",
+            color: isOpen ? "#8fc5ff" : "rgba(255,255,255,0.22)",
+            transition: "color 0.25s ease",
+            marginTop: "0.2rem",
           }}
         >
           {numLabel}
         </span>
 
+        {/* Question */}
         <span
+          className="text-[0.95rem] font-medium leading-6 md:text-[1.02rem]"
           style={{
-            fontSize: "clamp(0.95rem, 1.4vw, 1.05rem)",
-            fontWeight: 600,
-            lineHeight: 1.45,
-            color: isOpen ? "#fff" : "rgba(255,255,255,0.82)",
-            transition: "color 0.25s",
-            paddingTop: "0.05rem",
+            color: isOpen ? "#ffffff" : "rgba(255,255,255,0.82)",
+            transition: "color 0.25s ease",
           }}
         >
           {item.question}
         </span>
 
+        {/* Toggle */}
         <span
+          className="inline-flex h-7 w-7 items-center justify-center rounded-full border text-sm"
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "1.65rem",
-            height: "1.65rem",
-            borderRadius: "999px",
-            border: isOpen ? `1px solid ${TEAL}55` : "1px solid rgba(255,255,255,0.14)",
-            background: isOpen ? TEAL_DIM : "rgba(255,255,255,0.02)",
-            color: isOpen ? TEAL : "rgba(255,255,255,0.45)",
-            fontSize: "0.9rem",
-            lineHeight: 1,
-            transition: "all 0.25s",
+            borderColor: isOpen
+              ? "rgba(43,93,150,0.45)"
+              : "rgba(255,255,255,0.14)",
+            background: isOpen ? ACCENT_SOFT : "rgba(255,255,255,0.02)",
+            color: isOpen ? "#8fc5ff" : "rgba(255,255,255,0.45)",
+            transition: "all 0.25s ease",
             marginTop: "0.05rem",
           }}
         >
           <motion.span
             animate={{ rotate: isOpen ? 45 : 0 }}
-            transition={{ duration: 0.22 }}
-            style={{ display: "block", lineHeight: 1 }}
+            transition={{ duration: 0.2 }}
           >
             +
           </motion.span>
@@ -140,26 +128,22 @@ function FAQRow({ item, index, isOpen, onToggle }) {
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            key="answer"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             style={{ overflow: "hidden" }}
           >
             <motion.p
-              initial={{ y: -8, opacity: 0 }}
+              initial={{ y: -6, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -4, opacity: 0 }}
-              transition={{ duration: 0.22 }}
+              transition={{ duration: 0.2 }}
+              className="pb-5 text-sm leading-7 md:text-[0.92rem]"
               style={{
-                paddingLeft: "calc(3rem + 1rem)",
-                paddingBottom: "1.25rem",
-                paddingTop: "0.05rem",
-                fontSize: "0.92rem",
-                lineHeight: 1.75,
+                paddingLeft: "calc(2.5rem + 1rem)",
                 color: "rgba(255,255,255,0.62)",
-                maxWidth: "62ch",
+                maxWidth: "64ch",
               }}
             >
               {item.answer}
@@ -174,10 +158,10 @@ function FAQRow({ item, index, isOpen, onToggle }) {
 function ContactCard({ waLink }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
       className="relative overflow-hidden rounded-2xl border p-5 md:p-6"
       style={{
         position: "sticky",
@@ -185,70 +169,47 @@ function ContactCard({ waLink }) {
         borderColor: "rgba(255,255,255,0.10)",
         background:
           "linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.03) 100%)",
-        backdropFilter: "blur(16px)",
+        backdropFilter: "blur(14px)",
         boxShadow: "0 16px 42px rgba(0,0,0,0.22)",
       }}
     >
+      {/* ambient glows */}
       <div
         className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full blur-3xl"
-        style={{ background: "rgba(66,199,181,0.14)" }}
+        style={{ background: "rgba(43,93,150,0.18)" }}
       />
       <div
         className="pointer-events-none absolute -left-10 bottom-0 h-28 w-28 rounded-full blur-3xl"
-        style={{ background: "rgba(49,96,158,0.12)" }}
+        style={{ background: "rgba(59,130,246,0.10)" }}
       />
 
+      {/* badge style disamain dengan section lain */}
       <div
-        className="relative inline-flex items-center gap-2 rounded-full border px-3 py-1"
+        className="relative inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs backdrop-blur"
         style={{
-          borderColor: "rgba(66,199,181,0.24)",
-          background: "rgba(66,199,181,0.08)",
+          borderColor: "rgba(255,255,255,0.14)",
+          background: "rgba(255,255,255,0.04)",
+          color: "rgba(255,255,255,0.78)",
           marginBottom: "0.9rem",
         }}
       >
         <span
           className="inline-block h-1.5 w-1.5 rounded-full"
-          style={{ background: TEAL }}
+          style={{ background: "#60A5FA" }}
         />
-        <span
-          style={{
-            fontSize: "0.68rem",
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: "rgba(66,199,181,0.9)",
-            fontWeight: 600,
-          }}
-        >
-          Need help?
-        </span>
+        Need help?
       </div>
 
-      <h3
-        className="relative text-white"
-        style={{
-          fontSize: "clamp(1.45rem, 2vw, 1.9rem)",
-          lineHeight: 1.15,
-          fontWeight: 700,
-          letterSpacing: "-0.02em",
-          marginBottom: "0.65rem",
-        }}
-      >
+      <h3 className="relative mb-2 text-2xl font-semibold leading-tight tracking-tight text-white md:text-3xl">
         Let’s discuss your project
       </h3>
 
-      <p
-        className="relative"
-        style={{
-          fontSize: "0.9rem",
-          lineHeight: 1.7,
-          color: "rgba(255,255,255,0.62)",
-          marginBottom: "1.15rem",
-        }}
-      >
-        Tell us your goals and we’ll help you choose the right package for your business.
+      <p className="relative mb-4 text-sm leading-7 text-white/65">
+        Tell us your goals and we’ll help you choose the right package for your
+        business.
       </p>
 
-      <div className="relative grid grid-cols-2 gap-2 mb-4">
+      <div className="relative mb-4 grid grid-cols-2 gap-2">
         {[
           ["Landing Page", "Fast launch"],
           ["Company Profile", "Trust-first"],
@@ -263,8 +224,10 @@ function ContactCard({ waLink }) {
               background: "rgba(255,255,255,0.03)",
             }}
           >
-            <p className="text-[12px] font-medium text-white/85 leading-tight">{name}</p>
-            <p className="mt-1 text-[11px] text-white/45 leading-tight">{tag}</p>
+            <p className="text-[12px] font-medium leading-tight text-white/85">
+              {name}
+            </p>
+            <p className="mt-1 text-[11px] leading-tight text-white/45">{tag}</p>
           </div>
         ))}
       </div>
@@ -276,13 +239,12 @@ function ContactCard({ waLink }) {
         whileHover={{ y: -2, scale: 1.01 }}
         whileTap={{ scale: 0.985 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="group relative inline-flex w-full items-center justify-center overflow-hidden rounded-xl px-4 py-3 text-sm font-semibold"
+        className="group relative inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl px-4 py-3 text-sm font-semibold"
         style={{
           background: "linear-gradient(135deg, #2B5D96 0%, #3B82F6 100%)",
           color: "#fff",
           textDecoration: "none",
           boxShadow: "0 10px 28px rgba(43,93,150,0.32)",
-          cursor: "pointer",
         }}
       >
         <motion.span
@@ -304,57 +266,57 @@ export default function FAQSection() {
   return (
     <section
       id="faq"
-      className="relative overflow-hidden -mt-12 pt-[calc(4rem+3rem)] pb-16 md:-mt-16 md:pt-[calc(6rem+4rem)] md:pb-24"
+      className="relative overflow-hidden -mt-12 pb-16 pt-[calc(4rem+3rem)] md:-mt-16 md:pb-24 md:pt-[calc(6rem+4rem)]"
       style={{ background: FAQ_BG, fontFamily: "'Poppins', sans-serif" }}
     >
-      {/* Smooth blend with previous section (no visible strip) */}
+      {/* Smooth blend dari section sebelumnya (pricing/portfolio/contact theme) */}
       <div className="pointer-events-none absolute inset-0" style={{ zIndex: 0 }}>
-        {/* soft top blend */}
+        {/* top blend supaya ga ada potongan */}
         <div
           className="absolute left-0 right-0 top-0"
           style={{
             height: "180px",
             background: `linear-gradient(
               to bottom,
-              rgba(21,16,40,0.60) 0%,
-              rgba(14,16,28,0.30) 34%,
-              rgba(11,17,27,0.00) 100%
+              rgba(21,16,40,0.52) 0%,
+              rgba(10,16,26,0.18) 40%,
+              rgba(10,16,26,0.00) 100%
             )`,
           }}
         />
 
-        {/* top center blend glow */}
+        {/* left blue glow */}
         <motion.div
-          className="absolute -top-20 left-1/2 h-64 w-[42rem] -translate-x-1/2 rounded-full blur-3xl"
-          style={{ background: "rgba(96,76,180,0.14)" }}
-          animate={{ opacity: [0.1, 0.18, 0.1], scale: [1, 1.03, 1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -left-16 top-10 h-80 w-80 rounded-full blur-3xl"
+          style={{ background: "rgba(43,93,150,0.16)" }}
+          animate={{ x: [0, 12, 0], y: [0, -8, 0], scale: [1, 1.04, 1] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* right teal glow */}
+        {/* right blue glow */}
         <motion.div
-          className="absolute top-24 right-[-3rem] h-80 w-80 rounded-full blur-3xl"
-          style={{ background: "rgba(66,199,181,0.08)" }}
-          animate={{ x: [0, -12, 0], y: [0, 10, 0], scale: [1, 1.04, 1] }}
+          className="absolute right-[-3rem] top-24 h-80 w-80 rounded-full blur-3xl"
+          style={{ background: "rgba(59,130,246,0.10)" }}
+          animate={{ x: [0, -10, 0], y: [0, 10, 0], scale: [1, 1.03, 1] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* left blue glow */}
+        {/* subtle center glow */}
         <motion.div
-          className="absolute bottom-[-5rem] left-[-4rem] h-96 w-96 rounded-full blur-3xl"
-          style={{ background: "rgba(49,96,158,0.11)" }}
-          animate={{ x: [0, 14, 0], y: [0, -10, 0], scale: [1, 1.05, 1] }}
-          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute left-1/2 top-[-4rem] h-64 w-[38rem] -translate-x-1/2 rounded-full blur-3xl"
+          style={{ background: "rgba(43,93,150,0.10)" }}
+          animate={{ opacity: [0.08, 0.14, 0.08] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* subtle radial depth */}
+        {/* radial layer */}
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(circle at 88% 16%, rgba(66,199,181,0.07), transparent 42%),
-              radial-gradient(circle at 14% 82%, rgba(49,96,158,0.08), transparent 46%),
-              radial-gradient(circle at 50% -10%, rgba(108,91,195,0.09), transparent 45%)
+              radial-gradient(circle at 14% 20%, rgba(43,93,150,0.10), transparent 42%),
+              radial-gradient(circle at 85% 24%, rgba(59,130,246,0.08), transparent 44%),
+              radial-gradient(circle at 50% 100%, rgba(33,74,122,0.08), transparent 58%)
             `,
           }}
         />
@@ -366,7 +328,10 @@ export default function FAQSection() {
         <div className="absolute inset-0 [box-shadow:inset_0_0_180px_rgba(0,0,0,0.38)]" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-4 md:px-8" style={{ zIndex: 2 }}>
+      <div
+        className="relative mx-auto w-full max-w-6xl px-4 md:px-8"
+        style={{ zIndex: 2 }}
+      >
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -375,32 +340,25 @@ export default function FAQSection() {
           transition={{ duration: 0.5 }}
           className="mb-10 md:mb-14"
         >
-          <div
-            className="inline-flex items-center gap-2 rounded-full border px-3 py-1"
-            style={{
-              borderColor: "rgba(66,199,181,0.20)",
-              background: "rgba(66,199,181,0.06)",
-            }}
-          >
-            <span className="inline-block h-1.5 w-1.5 rounded-full" style={{ background: TEAL }} />
-            <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-white/80">
-              FAQ
-            </span>
+          {/* badge style sama seperti section lain */}
+          <div className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs text-white/75 backdrop-blur">
+            FAQ
           </div>
 
           <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-white md:text-5xl">
-            Frequently asked questions
+            Frequently Asked Questions
           </h2>
 
           <p className="mt-3 max-w-2xl text-sm leading-7 text-white/65 md:text-base">
-            Everything you need to know before starting your website or content project
-            with Chandra Nova.
+            Everything you need to know before starting your website or content
+            project with Chandra Nova.
           </p>
 
           <div
             className="mt-5 h-px w-24"
             style={{
-              background: "linear-gradient(to right, rgba(66,199,181,0.65), transparent)",
+              background:
+                "linear-gradient(to right, rgba(96,165,250,0.55), transparent)",
             }}
           />
         </motion.div>
@@ -414,7 +372,9 @@ export default function FAQSection() {
                 item={item}
                 index={index}
                 isOpen={openIndex === index}
-                onToggle={() => setOpenIndex((prev) => (prev === index ? -1 : index))}
+                onToggle={() =>
+                  setOpenIndex((prev) => (prev === index ? -1 : index))
+                }
               />
             ))}
 

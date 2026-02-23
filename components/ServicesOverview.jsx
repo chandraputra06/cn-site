@@ -269,9 +269,9 @@ export default function ServicesOverview() {
             Services Overview
           </motion.div>
 
-          <h2 className="mt-4 text-2xl font-semibold leading-tight tracking-tight text-white md:text-4xl">
-            Digital services built for visibility and growth
-          </h2>
+          <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl">
+            Digital Services Built for <br />Visibility and Growth
+          </h1>
 
           <p className="mt-3 text-sm leading-7 text-white/75 md:text-base">
             We help brands launch premium websites and build a stronger online

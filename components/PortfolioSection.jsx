@@ -184,7 +184,7 @@ export default function PortfolioSection() {
           </div>
 
           <h2 className="mt-4 text-2xl font-semibold tracking-tight text-white md:text-4xl">
-            Selected projects & client work
+            Selected Projects & Client Work
           </h2>
 
           <p className="mt-3 text-sm leading-7 text-white/70 md:text-base">
