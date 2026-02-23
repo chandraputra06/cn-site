@@ -182,10 +182,10 @@ function ServiceCard({ service, index }) {
 export default function ServicesOverview() {
   return (
     <section
-      id="services"
-      className="relative overflow-hidden py-16 md:py-22"
-      style={{ backgroundColor: SERVICES_BG }}
-    >
+  id="services"
+  className="relative overflow-hidden py-20 md:py-24"
+  style={{ backgroundColor: SERVICES_BG }}
+>
       <style>{`
         @keyframes gridDrift {
           0% { transform: translate3d(0,0,0); }

@@ -273,32 +273,26 @@ export default function PricingSection() {
   return (
     <section
       id="pricing"
-      className="relative overflow-hidden pt-20 pb-16 md:pt-24 md:pb-24"
-      style={{ backgroundColor: PRICING_BG }}
+      className="relative overflow-hidden py-20 md:py-24"
+      style={{ backgroundColor: PRICING_BG, fontFamily: "'Poppins', sans-serif" }}
     >
-      {/* Smooth bridge from Services → Pricing */}
+      {/* Blend from Services */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0"
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1]"
         style={{
-          height: "220px",
-          zIndex: 1,
-          background: `
-            linear-gradient(
-              to bottom,
-              ${SERVICES_BG} 0%,
-              rgba(9,13,20,0.98) 10%,
-              rgba(10,14,22,0.92) 24%,
-              rgba(11,15,24,0.82) 40%,
-              rgba(12,16,28,0.62) 60%,
-              rgba(13,16,32,0.32) 82%,
-              rgba(13,16,32,0) 100%
-            )
-          `,
+          height: "200px",
+          background: `linear-gradient(
+            to bottom,
+            rgba(9,13,20,0.96) 0%,
+            rgba(10,14,22,0.78) 35%,
+            rgba(12,15,26,0.38) 70%,
+            rgba(13,16,32,0) 100%
+          )`,
         }}
       />
 
       {/* Background atmosphere */}
-      <div className="pointer-events-none absolute inset-0" style={{ zIndex: 0 }}>
+      <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute inset-0" style={{ background: PRICING_BG }} />
 
         <motion.div
@@ -309,7 +303,7 @@ export default function PricingSection() {
         />
 
         <motion.div
-          className="absolute top-8 right-[-50px] h-[320px] w-[320px] rounded-full blur-3xl"
+          className="absolute right-[-50px] top-8 h-[320px] w-[320px] rounded-full blur-3xl"
           style={{ background: "rgba(84,68,170,0.14)" }}
           animate={{ x: [0, -14, 0], y: [0, 10, 0], scale: [1, 1.04, 1] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
@@ -348,20 +342,10 @@ export default function PricingSection() {
           />
         </div>
 
-        <div
-          className="absolute inset-x-0 top-0 h-32"
-          style={{
-            background: `linear-gradient(to bottom, rgba(9,13,20,0.22), rgba(9,13,20,0))`,
-          }}
-        />
-
         <div className="absolute inset-0 [box-shadow:inset_0_0_180px_rgba(0,0,0,0.38)]" />
       </div>
 
-      <div
-        className="relative mx-auto w-full max-w-7xl px-4 md:px-8"
-        style={{ zIndex: 2 }}
-      >
+      <div className="relative z-[2] mx-auto w-full max-w-7xl px-4 md:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -389,7 +373,7 @@ export default function PricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.45, delay: 0.05 }}
-          className="mt-6 flex flex-wrap items-center justify-center gap-2"
+          className="mt-8 flex flex-wrap items-center justify-center gap-2"
         >
           {categoryKeys.map((key) => {
             const isActive = activeCategory === key;
@@ -398,7 +382,7 @@ export default function PricingSection() {
                 key={key}
                 type="button"
                 onClick={() => setActiveCategory(key)}
-                className="group relative inline-flex items-center rounded-xl border px-3 py-2 text-xs md:text-sm backdrop-blur transition-all duration-300"
+                className="group relative inline-flex cursor-pointer items-center rounded-xl border px-3 py-2 text-xs backdrop-blur transition-all duration-300 md:text-sm"
                 style={{
                   borderColor: isActive
                     ? pricingTheme[key].accentBorder
@@ -434,7 +418,7 @@ export default function PricingSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.35 }}
-            className={`mt-8 grid gap-5 ${
+            className={`mt-10 grid gap-5 ${
               current.plans.length === 2
                 ? "grid-cols-1 lg:grid-cols-2"
                 : "grid-cols-1 xl:grid-cols-3"
@@ -452,7 +436,7 @@ export default function PricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.45, delay: 0.08 }}
-          className="mt-8 flex flex-col items-center justify-center gap-3 md:mt-10 md:flex-row"
+          className="mt-10 flex flex-col items-center justify-center gap-3 md:mt-12 md:flex-row"
         >
           <motion.a
             href={site.contact.whatsapp}
@@ -513,7 +497,6 @@ function PricingCard({ plan, index, theme }) {
         backdropFilter: "blur(12px)",
       }}
     >
-      {/* top sheen */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-20"
         style={{
@@ -522,10 +505,8 @@ function PricingCard({ plan, index, theme }) {
         }}
       />
 
-      {/* ambient hover glow */}
       <div className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-white/10 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-      {/* featured badge */}
       {isFeatured && (
         <motion.div
           initial={{ opacity: 0, y: -8 }}

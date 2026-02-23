@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaWhatsapp, FaInstagram, FaArrowRight } from "react-icons/fa";
 import { site } from "@/data/site";
 
-const CONTACT_BG = "#0A101A"; // balik ke tone services biar closing section terasa clean
+const CONTACT_BG = "#0A101A";
 
 function buildWhatsAppLink(baseUrl) {
   const text =
@@ -25,25 +25,24 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden -mt-10 pt-[calc(3rem+2.5rem)] pb-16 md:-mt-14 md:pt-[calc(4rem+3rem)] md:pb-24"
-      style={{ background: CONTACT_BG }}
+      className="relative overflow-hidden py-20 md:py-24"
+      style={{ background: CONTACT_BG, fontFamily: "'Poppins', sans-serif" }}
     >
-      {/* Smooth blend from FAQ */}
-      <div className="pointer-events-none absolute inset-0">
-        <div
-          className="absolute left-0 right-0 top-0"
-          style={{
-            height: "180px",
-            background: `linear-gradient(
-              to bottom,
-              rgba(11,17,27,0.65) 0%,
-              rgba(10,15,24,0.28) 42%,
-              rgba(10,16,26,0) 100%
-            )`,
-          }}
-        />
+      {/* Blend from FAQ */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1]"
+        style={{
+          height: "180px",
+          background: `linear-gradient(
+            to bottom,
+            rgba(10,16,26,0.88) 0%,
+            rgba(10,16,26,0.34) 52%,
+            rgba(10,16,26,0) 100%
+          )`,
+        }}
+      />
 
-        {/* ambient glows */}
+      <div className="pointer-events-none absolute inset-0 z-0">
         <motion.div
           className="absolute -top-16 left-[-4rem] h-72 w-72 rounded-full blur-3xl"
           style={{ background: "rgba(49,96,158,0.14)" }}
@@ -51,23 +50,19 @@ export default function ContactSection() {
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute top-10 right-[-3rem] h-80 w-80 rounded-full blur-3xl"
+          className="absolute right-[-3rem] top-10 h-80 w-80 rounded-full blur-3xl"
           style={{ background: "rgba(66,199,181,0.08)" }}
           animate={{ x: [0, -14, 0], y: [0, 12, 0], scale: [1, 1.05, 1] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* radial depth */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(49,96,158,0.10),transparent_40%),radial-gradient(circle_at_85%_20%,rgba(66,199,181,0.06),transparent_42%),radial-gradient(circle_at_50%_100%,rgba(49,96,158,0.06),transparent_60%)]" />
 
-        {/* grid */}
         <div className="absolute inset-0 opacity-[0.045] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:48px_48px]" />
-
-        {/* vignette */}
         <div className="absolute inset-0 [box-shadow:inset_0_0_180px_rgba(0,0,0,0.35)]" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-4 md:px-8">
+      <div className="relative z-[2] mx-auto w-full max-w-6xl px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -89,21 +84,18 @@ export default function ContactSection() {
           </p>
         </motion.div>
 
-        {/* Main contact card */}
         <motion.div
           initial={{ opacity: 0, y: 18, scale: 0.99 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, delay: 0.05 }}
-          className="relative mx-auto mt-8 max-w-4xl overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl md:mt-10 md:p-8"
+          className="relative mx-auto mt-10 max-w-4xl overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl md:mt-12 md:p-8"
           style={{ boxShadow: "0 18px 50px rgba(0,0,0,0.24)" }}
         >
-          {/* decorative glow */}
           <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#31609E]/20 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-[#2DD4BF]/10 blur-3xl" />
 
           <div className="relative grid grid-cols-1 gap-6 md:grid-cols-[1.1fr_0.9fr] md:gap-8">
-            {/* Left content */}
             <div>
               <h3 className="text-xl font-semibold text-white md:text-2xl">
                 Contact Chandra Nova
@@ -115,7 +107,6 @@ export default function ContactSection() {
               </p>
 
               <div className="mt-5 space-y-3">
-                {/* WhatsApp CTA */}
                 <motion.a
                   href={waLink}
                   target="_blank"
@@ -142,7 +133,6 @@ export default function ContactSection() {
                   <FaArrowRight className="relative z-10 text-white/80 transition-transform duration-300 group-hover:translate-x-1" size={13} />
                 </motion.a>
 
-                {/* Instagram CTA */}
                 <motion.a
                   href={igLink}
                   target="_blank"
@@ -166,7 +156,6 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Right info panel */}
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 md:p-5">
               <p className="text-xs uppercase tracking-[0.14em] text-white/45">
                 Best for
@@ -189,7 +178,7 @@ export default function ContactSection() {
               </div>
 
               <div className="mt-4 rounded-xl border border-white/10 bg-black/20 px-3 py-3">
-                <p className="text-xs text-white/50">Instagram handle</p>
+                <p className="text-xs text-white/50">Our Instagram</p>
                 <a
                   href={igLink}
                   target="_blank"

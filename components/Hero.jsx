@@ -281,7 +281,7 @@ export default function Hero() {
                     backdropFilter: "blur(10px)",
                   }}
                 >
-                  Lihat Paket →
+                  See Package →
                 </motion.a>
               </motion.div>
 
