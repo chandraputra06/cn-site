@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
 import { site } from "@/data/site";
 
-const FAQ_BG = "#0A101A"; // samakan keluarga warna dengan section lain
-const ACCENT = "#2B5D96"; // accent utama biru
+const FAQ_BG = "#0A101A";
+const ACCENT = "#2B5D96";
 const ACCENT_SOFT = "rgba(43,93,150,0.14)";
 const ACCENT_BORDER = "rgba(43,93,150,0.28)";
 
@@ -34,7 +34,7 @@ const faqItems = [
   {
     question: "Do you only build websites, or also social media content?",
     answer:
-      "We also provide social media management services, including feed design, reels editing, content planning, and caption support — so your brand stays consistent across website and social media.",
+      "We also provide social media management services, including feed design, reels editing, content planning, and caption support  so your brand stays consistent across website and social media.",
   },
   {
     question: "How do I start an order?",
@@ -80,7 +80,6 @@ function FAQRow({ item, index, isOpen, onToggle }) {
         onClick={onToggle}
         className="group relative grid w-full cursor-pointer grid-cols-[2.5rem_1fr_2rem] items-start gap-x-4 py-5 text-left"
       >
-        {/* Number */}
         <span
           className="select-none text-sm font-semibold tracking-[0.14em]"
           style={{
@@ -92,7 +91,6 @@ function FAQRow({ item, index, isOpen, onToggle }) {
           {numLabel}
         </span>
 
-        {/* Question */}
         <span
           className="text-[0.95rem] font-medium leading-6 md:text-[1.02rem]"
           style={{
@@ -103,7 +101,6 @@ function FAQRow({ item, index, isOpen, onToggle }) {
           {item.question}
         </span>
 
-        {/* Toggle */}
         <span
           className="inline-flex h-7 w-7 items-center justify-center rounded-full border text-sm"
           style={{
@@ -173,7 +170,6 @@ function ContactCard({ waLink }) {
         boxShadow: "0 16px 42px rgba(0,0,0,0.22)",
       }}
     >
-      {/* ambient glows */}
       <div
         className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full blur-3xl"
         style={{ background: "rgba(43,93,150,0.18)" }}
@@ -183,20 +179,10 @@ function ContactCard({ waLink }) {
         style={{ background: "rgba(59,130,246,0.10)" }}
       />
 
-      {/* badge style disamain dengan section lain */}
       <div
-        className="relative inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs backdrop-blur"
-        style={{
-          borderColor: "rgba(255,255,255,0.14)",
-          background: "rgba(255,255,255,0.04)",
-          color: "rgba(255,255,255,0.78)",
-          marginBottom: "0.9rem",
-        }}
+        className="relative inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs text-white/75 backdrop-blur"
+        style={{ marginBottom: "0.9rem" }}
       >
-        <span
-          className="inline-block h-1.5 w-1.5 rounded-full"
-          style={{ background: "#60A5FA" }}
-        />
         Need help?
       </div>
 
@@ -266,26 +252,24 @@ export default function FAQSection() {
   return (
     <section
       id="faq"
-      className="relative overflow-hidden -mt-12 pb-16 pt-[calc(4rem+3rem)] md:-mt-16 md:pb-24 md:pt-[calc(6rem+4rem)]"
+      className="relative overflow-hidden py-20 md:py-24"
       style={{ background: FAQ_BG, fontFamily: "'Poppins', sans-serif" }}
     >
-      {/* Smooth blend dari section sebelumnya (pricing/portfolio/contact theme) */}
-      <div className="pointer-events-none absolute inset-0" style={{ zIndex: 0 }}>
-        {/* top blend supaya ga ada potongan */}
-        <div
-          className="absolute left-0 right-0 top-0"
-          style={{
-            height: "180px",
-            background: `linear-gradient(
-              to bottom,
-              rgba(21,16,40,0.52) 0%,
-              rgba(10,16,26,0.18) 40%,
-              rgba(10,16,26,0.00) 100%
-            )`,
-          }}
-        />
+      {/* Blend from Portfolio */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1]"
+        style={{
+          height: "180px",
+          background: `linear-gradient(
+            to bottom,
+            rgba(13,16,32,0.72) 0%,
+            rgba(11,16,26,0.28) 52%,
+            rgba(10,16,26,0) 100%
+          )`,
+        }}
+      />
 
-        {/* left blue glow */}
+      <div className="pointer-events-none absolute inset-0 z-0">
         <motion.div
           className="absolute -left-16 top-10 h-80 w-80 rounded-full blur-3xl"
           style={{ background: "rgba(43,93,150,0.16)" }}
@@ -293,7 +277,6 @@ export default function FAQSection() {
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* right blue glow */}
         <motion.div
           className="absolute right-[-3rem] top-24 h-80 w-80 rounded-full blur-3xl"
           style={{ background: "rgba(59,130,246,0.10)" }}
@@ -301,7 +284,6 @@ export default function FAQSection() {
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* subtle center glow */}
         <motion.div
           className="absolute left-1/2 top-[-4rem] h-64 w-[38rem] -translate-x-1/2 rounded-full blur-3xl"
           style={{ background: "rgba(43,93,150,0.10)" }}
@@ -309,7 +291,6 @@ export default function FAQSection() {
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* radial layer */}
         <div
           className="absolute inset-0"
           style={{
@@ -321,18 +302,11 @@ export default function FAQSection() {
           }}
         />
 
-        {/* grid */}
         <div className="absolute inset-0 opacity-[0.045] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:52px_52px]" />
-
-        {/* vignette */}
         <div className="absolute inset-0 [box-shadow:inset_0_0_180px_rgba(0,0,0,0.38)]" />
       </div>
 
-      <div
-        className="relative mx-auto w-full max-w-6xl px-4 md:px-8"
-        style={{ zIndex: 2 }}
-      >
-        {/* Header */}
+      <div className="relative z-[2] mx-auto w-full max-w-6xl px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -340,7 +314,6 @@ export default function FAQSection() {
           transition={{ duration: 0.5 }}
           className="mb-10 md:mb-14"
         >
-          {/* badge style sama seperti section lain */}
           <div className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs text-white/75 backdrop-blur">
             FAQ
           </div>
@@ -363,7 +336,6 @@ export default function FAQSection() {
           />
         </motion.div>
 
-        {/* Layout */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_360px] lg:gap-10">
           <div>
             {faqItems.map((item, index) => (
