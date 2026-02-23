@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 88px; /* sesuaikan tinggi navbar */
+}
+
 :root{
   --primary: #132B47;
   --secondary: #FFFFFF;

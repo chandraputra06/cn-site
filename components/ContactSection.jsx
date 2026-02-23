@@ -80,7 +80,7 @@ export default function ContactSection() {
           </div>
 
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-5xl">
-            Let’s build something great
+            Let’s Build Something Great
           </h2>
 
           <p className="mt-3 text-sm leading-7 text-white/65 md:text-base">
